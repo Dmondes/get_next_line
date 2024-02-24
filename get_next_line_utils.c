@@ -1,23 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: delim <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/13 10:05:05 by delim             #+#    #+#             */
+/*   Updated: 2024/02/24 17:41:11 by delim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-
-void	*ft_calloc(int count, int size)
-{
-	void	*ptr;
-	int		total;
-	int		i;
-
-	i = 0;
-	total = count * size;
-	ptr = (void *)malloc(total);
-	if (!ptr)
-		return (NULL);
-	while (i < total)
-	{
-		((unsigned char *)ptr)[i] = 0;
-		i ++;
-	}
-	return (ptr);
-}
 
 char	*ft_strchr(char *s, int c)
 {
@@ -91,4 +84,31 @@ char	*ft_substr(char const *s, int start, int len)
 	}
 	new_str[i] = '\0';
 	return (new_str);
+}
+
+void	*ft_memmove(void *dest, const void *src, int n)
+{
+	int	i;
+
+	if (!dest && !src)
+		return (NULL);
+	i = 0;
+	if (dest > src)
+	{
+		i = n;
+		while (i > 0)
+		{
+			((unsigned char *)dest)[i - 1] = ((unsigned char *)src)[i - 1];
+			i--;
+		}
+	}
+	else
+	{
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	return (dest);
 }
